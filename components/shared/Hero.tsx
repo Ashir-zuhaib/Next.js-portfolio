@@ -2,17 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 
+const TITLES = [
+  "MERN Stack Developer",
+  "Full Stack Engineer",
+  "Web Security Specialist"
+];
+
 const Hero = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  
-  const titles = [
-    "MERN Stack Developer",
-    "Full Stack Engineer",
-    "Web Security Specialist"
-  ];
   
   // Progress animation for the circular indicator
   useEffect(() => {
@@ -25,19 +25,19 @@ const Hero = () => {
 
   // Typing animation effect
   useEffect(() => {
-    if (charIndex < titles[textIndex].length) {
+    if (charIndex < TITLES[textIndex].length) {
       const typingTimer = setTimeout(() => {
         setCharIndex(charIndex + 1);
       }, 100);
       return () => clearTimeout(typingTimer);
     } else {
       const nextTextTimer = setTimeout(() => {
-        setTextIndex((textIndex + 1) % titles.length);
+        setTextIndex((textIndex + 1) % TITLES.length);
         setCharIndex(0);
       }, 2000);
       return () => clearTimeout(nextTextTimer);
     }
-  }, [charIndex, textIndex, titles]);
+  }, [charIndex, textIndex]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,7 +96,7 @@ const Hero = () => {
             <div className="relative h-12 mb-8 font-fira">
               <div className="absolute top-0 left-0">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl">
-                  <span className="text-electric-cyan font-medium">{titles[textIndex].substring(0, charIndex)}</span>
+                  <span className="text-electric-cyan font-medium">{TITLES[textIndex].substring(0, charIndex)}</span>
                   <span className="animate-pulse">_</span>
                 </h2>
               </div>

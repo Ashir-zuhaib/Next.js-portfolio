@@ -16,7 +16,7 @@ interface ProjectCardProps {
 const ProjectCard = ({
   title,
   description,
-  image,
+  image: _image,
   demoLink,
   repoLink,
   technologies,
